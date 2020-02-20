@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Joe's Hotdogs</title>
+	<style type="text/css">
+		html,body,input {background: #F4D06F; padding: 15px; display: inline-block; text-align: center; font-family: avenir; font-size:20px;}
+	</style>	
+	<script language= "javascript">
+		function calculate()
+		{
+			HOTDOG = document.form1.hotdog.value;
+			HOTDOG = parseInt(HOTDOG) * 3.25;
+			FRIES = document.form1.fries.value;
+			FRIES = parseInt(FRIES) * 2;
+			DRINK = document.form1.drink.value;
+			DRINK = parseInt(DRINK) * 1.5;
+			SUBTOTAL = HOTDOG + FRIES + DRINK;
+			SUBTOTAL = Math.round(SUBTOTAL * 100)/100;
+
+			if (SUBTOTAL > 20 || SUBTOTAL == 20) {
+				DISCOUNT = SUBTOTAL * .10;
+				DISCOUNT = Math.round(DISCOUNT * 100)/100;
+				TOTAL = SUBTOTAL - DISCOUNT;
+				TAX = TOTAL * .0625;
+				TAX = Math.round(TAX * 100)/100;
+				TOTAL = TOTAL + TAX;
+				TOTAL = Math.round(TOTAL * 100)/100;
+				document.getElementById("subtotal").value = SUBTOTAL;
+				document.getElementById("result").value = TOTAL;
+				document.getElementById("discount").value = DISCOUNT;
+				document.getElementById("tax").value = TAX;
+			}
+			else if (SUBTOTAL > 0) {
+				TAX = SUBTOTAL * .0625;
+				TAX = Math.round(TAX * 100)/100;
+				TOTAL = SUBTOTAL + TAX;
+				TOTAL = Math.round(TOTAL * 100)/100;
+				DISCOUNT = "none";
+				document.getElementById("subtotal").value = SUBTOTAL;
+				document.getElementById("result").value = TOTAL;
+				document.getElementById("discount").value = DISCOUNT;
+				document.getElementById("tax").value = TAX;
+			}
+		}
+	</script>
+</head>
+<body>
+	<header><h1>Welcome to Joe's Hotdogs!</h1></header>
+	<h4>What would you like to order? 10% off on orders $20 and over!</h4>
+	<form name= "form1">
+		Hotdogs ($3.25 each) <input type="text" name ="hotdog" id="hotdog"><br />
+		French Fries ($2.00 each) <input type="text" name ="fries" id="fries"><br />
+		Drinks ($1.50 each) <input type="text" name="drink" id="drink">
+		<hr />
+		Subtotal <input type= "text" name= "subtotal" id="subtotal">
+		Discount Applied <input type="text" name="discount" id="discount">
+		Tax <input type="tax" name="tax" id="tax"><br /><br />
+		Total Amount <input type="text" name="result" id="result">
+		<br /><br />
+		<input type="button" value="CHECKOUT" 
+			onclick="calculate()">
+	</form>
+</body>
+</html>
